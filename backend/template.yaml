@@ -32,7 +32,7 @@ Resources:
               - "X-Forwarded-For"
             AllowedOrigins:
               - "http://localhost:8080"
-            MaxAge: 300
+            MaxAge: 60
 
   ApiGatewayApi:
     Type: AWS::Serverless::Api
@@ -112,7 +112,7 @@ Resources:
 Outputs:
   PresignedUrlApi:
     Description: "API Gateway endpoint for generate presigned url"
-    Value: !Sub "https://${ApiGatewayApi}.execute-api.${AWS::Region}.amazonaws.com/${Stage}/generate/"
+    Value: !Sub "https://${ApiGatewayApi}.execute-api.${AWS::Region}.amazonaws.com/${Stage}/generate"
   GenerateUrlFunction:
     Description: "GenerateUrlFunction Function ARN"
     Value: !GetAtt GenerateUrlFunction.Arn

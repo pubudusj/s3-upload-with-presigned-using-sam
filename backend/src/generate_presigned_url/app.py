@@ -5,11 +5,14 @@ import os
 from botocore.exceptions import ClientError
 from botocore.client import Config
 
-s3 = boto3.client('s3', config=Config(signature_version='s3v4'))
+s3 = boto3.client('s3', config=Config(
+    signature_version='s3v4',
+    s3={'addressing_style': 'virtual'}
+    ))
 
 
 def index(event, context):
-    key = str(uuid.uuid4()) + '.jpg'
+    key = str(uuid.uuid4())
     bucket = os.getenv('S3BUCKET')
 
     try:
