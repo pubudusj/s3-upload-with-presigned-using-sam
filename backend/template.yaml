@@ -31,8 +31,34 @@ Resources:
             AllowedHeaders:
               - "X-Forwarded-For"
             AllowedOrigins:
-              - "http://localhost:8080"
+              - !GetAtt S3WebSiteBucket.WebsiteURL
             MaxAge: 60
+
+  S3WebSiteBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      AccessControl: PublicRead
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: 404.html
+  
+  S3WebSiteBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      PolicyDocument:
+        Id: S3WebSiteBucketPolicy
+        Version: 2012-10-17
+        Statement:
+          - Sid: PublicReadForGetBucketObjects
+            Effect: Allow
+            Principal: '*'
+            Action: 's3:GetObject'
+            Resource: !Join 
+              - ''
+              - - 'arn:aws:s3:::'
+                - !Ref S3WebSiteBucket
+                - /*
+      Bucket: !Ref S3WebSiteBucket
 
   ApiGatewayApi:
     Type: AWS::Serverless::Api
@@ -134,3 +160,9 @@ Outputs:
   S3Bucket:
     Description: "S3 Bucket"
     Value: !GetAtt S3Bucket.Arn
+  S3Website:
+    Value: !Ref S3WebSiteBucket
+    Description: Website hosted bucket name
+  S3WebsiteURL:
+    Value: !GetAtt S3WebSiteBucket.WebsiteURL
+    Description: URL for website hosted on S3
