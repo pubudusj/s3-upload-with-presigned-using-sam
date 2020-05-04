@@ -157,10 +157,10 @@ Outputs:
   FileUploadOnFailSNS:
     Description: "File upload failed sns"
     Value: !Ref FileUploadFunctionEventInvokeConfigOnFailureTopic
-  S3Bucket:
-    Description: "S3 Bucket"
+  S3FileUploadBucket:
+    Description: "S3 Bucket to upload files"
     Value: !GetAtt S3Bucket.Arn
-  S3Website:
+  S3WebsiteBucket:
     Value: !Ref S3WebSiteBucket
     Description: Website hosted bucket name
   S3WebsiteURL:
