@@ -1,6 +1,10 @@
+# Upload files to s3 with presigend URLs with #AWS #SAM
+
 This project is to create a presigned url to upload files to s3 directory. Whole stack will be created using AWS SAM.
 
-Architecutre is as follows:
+Architecture is as follows:
+
+![Image of Architecture](architecture.png)
 
 ## Prerequisites
 
