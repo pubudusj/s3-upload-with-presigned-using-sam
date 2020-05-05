@@ -44,7 +44,7 @@ Update the variable `VUE_APP_GENERATE_URL` in the .env file with the value of `P
 4. Run below commands to install dependancies and build the frontend
 ```
 npm install
-Run npm run build
+npm run build
 ```
 
 This will generate the project files to deploy in the `dist` directory.
