@@ -1,4 +1,4 @@
-# Upload files to s3 with presigend URLs with #AWS #SAM
+# Upload files to s3 with presigend URLs with AWS SAM
 
 This project is to create a presigned url to upload files to s3 directory. Whole stack will be created using AWS SAM.
 
